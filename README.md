@@ -3,7 +3,7 @@
 </p>
 
 <h3 align="center">
-Neovim KISS configuration with Lua
+ Neovim KISS configuration with Lua <b>for Manjaro</b>
 </h3>
 
 ## Table of Contents
@@ -115,18 +115,44 @@ See: https://github.com/nanotee/nvim-lua-guide#where-to-put-lua-files
 ## Installation
 
 1. Install [Neovim v0.7.x](https://github.com/neovim/neovim/releases/latest).
+```term
+sudo pacman -S neovim 
+```
 
 2. Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads), (for the font of the screenshots install [Cozette Font](https://github.com/slavfox/Cozette)).
+I'm using Iosevka Nerd Font. After downloaded, unzip with :
+```term
+unzip Iosevka.zip -d $HOME/Downloads/iosevka-fonts
+```
+And copy fonts to user font directory (https://wiki.archlinux.org/title/Microsoft_fonts).
+```term
+sudo mkdir /usr/share/fonts/IosevkaFonts
+sudo cp $HOME/Downloads/iosevka-fonts/* /usr/share/fonts/IosevkaFonts/
+sudo chmod 644 /usr/share/fonts/IosevkaFonts/*
+fc-cache --force
+```
 
-3. Install [npm](https://github.com/npm/cli) for download packages of LSP language servers, see: [LSP Configuration](#lsp-configuration).
+3. Install NVM (https://github.com/nvm-sh/nvm)
+```term
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+source ~/.bashrc
+```
+4. Install NodeJS via NVM (choose between LTS or Latest, for now the latest is 16.15.1):
+```term
+nvm install 16.15.1
+```
+5. Install LSP Configuration (https://github.com/brainfucksec/neovim-lua#lsp-configuration)
+```term
+sudo npm install -g bash-language-server pyright vscode-langservers-extracted typescript typescript-language-server
+```
 
-4. Make a backup of your current `nvim` folder if necessary:
+6. Make a backup of your current `nvim` folder if necessary:
 
 ```term
 mv ~/.config/nvim ~/.config/nvim.backup
 ```
 
-5. Download neovim-lua with `git` and copy the `nvim` folder in the `${HOME}/.config` directory:
+7. Download neovim-lua with `git` and copy the `nvim` folder in the `${HOME}/.config` directory:
 
 ```term
 git clone https://github.com/brainfucksec/neovim-lua.git
@@ -134,14 +160,14 @@ cd neovim-lua/
 cp -Rv nvim ~/.config/
 ```
 
-6. Install [packer.nvim](https://github.com/wbthomason/packer.nvim) for install and manage the plugins:
+8. Install [packer.nvim](https://github.com/wbthomason/packer.nvim) for install and manage the plugins:
 
 ```term
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-7. Run Neovim with `PackerSync` command:
+9. Run Neovim with `PackerSync` command:
 
 ```term
 nvim +PackerSync
